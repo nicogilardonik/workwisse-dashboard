@@ -1,0 +1,65 @@
+<!-- src/app/features/companies/components/company-detail/company-detail.component.html -->
+<div class="container mx-auto p-4">
+  <div *ngIf="isLoading$ | async" class="text-center py-8">
+    <p class="text-lg text-gray-600">Loading company details...</p>
+    <div class="mt-4">
+      <div class="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  </div>
+
+  <div *ngIf="!(isLoading$ | async) && (company$ | async) as company; else notFound">
+    <div class="bg-white shadow-xl rounded-lg p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row justify-between items-start mb-4">
+        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2 sm:mb-0">{{ company.name }}</h1>
+        <div class="flex-shrink-0">
+          <span *ngIf="company.pendingApproval"
+                class="bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            Pending Approval
+          </span>
+          <span *ngIf="!company.pendingApproval"
+                class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            Approved
+          </span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-6 text-sm sm:text-base">
+        <div><strong class="text-gray-600">Category:</strong> <span class="text-gray-800">{{ company.category }}</span></div>
+        <div><strong class="text-gray-600">Country:</strong> <span class="text-gray-800">{{ company.country }}</span></div>
+        <div><strong class="text-gray-600">State:</strong> <span class="text-gray-800">{{ company.state }}</span></div>
+        <div><strong class="text-gray-600">Website:</strong> <a [href]="company.website?.startsWith('http') ? company.website : 'https://' + company.website" target="_blank" class="text-blue-600 hover:underline">{{ company.website }}</a></div>
+      </div>
+
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-2">Benefits</h2>
+        <p class="text-gray-700 whitespace-pre-line bg-gray-50 p-4 rounded-md">{{ company.benefits || 'No benefits information provided.' }}</p>
+      </div>
+      
+      <div class="mt-8 flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3">
+        <button *ngIf="company.pendingApproval"
+                (click)="onValidateCompany(company.id)"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-colors duration-150 w-full sm:w-auto">
+          Validate This Company
+        </button>
+        <a routerLink="/companies" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition-colors duration-150 text-center w-full sm:w-auto">
+          Back to List
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div *ngIf="!(isLoading$ | async)" class="text-center text-gray-500 py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2zm3-12V5M6 5H4M20 5h-2M9 21v-2.07a2 2 0 01.02-.22L7.5 13H16.5l-1.52 5.71a2 2 0 01.02.22V21" />
+      </svg>
+      <h2 class="mt-2 text-2xl font-semibold text-gray-700">Company Not Found</h2>
+      <p class="mt-1 text-gray-500">The company you are looking for does not exist or could not be loaded.</p>
+      <div class="mt-6">
+        <a routerLink="/companies" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-150">
+          Go to Companies List
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</div>
