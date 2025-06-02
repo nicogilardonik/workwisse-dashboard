@@ -7,11 +7,11 @@ import { ReviewValidationListComponent } from './features/reviews/components/rev
 import { ReviewDetailComponent } from './features/reviews/components/review-detail/review-detail.component';
 
 export const routes: Routes = [
-  { path: 'companies', component: CompanyListComponent, title: 'Companies' },
-  { path: 'companies/validate', component: CompanyValidationListComponent, title: 'Validate Companies' },
-  { path: 'companies/:id', component: CompanyDetailComponent, title: 'Company Details' },
-  { path: 'reviews', component: ReviewListComponent, title: 'Reviews' },
-  { path: 'reviews/validate', component: ReviewValidationListComponent, title: 'Validate Reviews' },
-  { path: 'reviews/:id', component: ReviewDetailComponent, title: 'Review Details' },
-  { path: '', redirectTo: '/companies', pathMatch: 'full' } // Default route
+  { path: 'companies', component: CompanyListComponent, title: 'Empresas' },
+  { path: 'companies/validate', component: CompanyValidationListComponent, title: 'Validar Empresas' },
+  { path: 'companies/:id', component: CompanyDetailComponent, title: 'Detalles de Empresa' },
+  { path: 'reviews', component: ReviewListComponent, title: 'Reseñas' },
+  { path: 'reviews/validate', component: ReviewValidationListComponent, title: 'Validar Reseñas' },
+  { path: 'reviews/:id', component: ReviewDetailComponent, title: 'Detalles de Reseña' },
+  { path: '', redirectTo: '/companies', pathMatch: 'full' } // Ruta por defecto
 ];
