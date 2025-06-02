@@ -1,9 +1,9 @@
 <!-- src/app/features/companies/components/company-validation-list/company-validation-list.component.html -->
 <div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Validate Companies</h1>
+  <h1 class="text-2xl font-bold mb-4">Validar Empresas</h1>
 
   <div *ngIf="isLoading$ | async" class="text-center py-8">
-    <p class="text-lg text-gray-600">Loading companies for validation...</p>
+    <p class="text-lg text-gray-600">Cargando empresas para validación...</p>
     <div class="mt-4">
       <div class="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
@@ -11,17 +11,17 @@
 
   <div *ngIf="!(isLoading$ | async) && (pendingCompanies$ | async) as pendingCompanies">
     <div *ngIf="pendingCompanies.length === 0" class="text-center text-gray-500 py-8">
-      No companies currently pending approval.
+      No hay empresas pendientes de aprobación actualmente.
     </div>
 
     <table *ngIf="pendingCompanies.length > 0" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
       <thead class="bg-gray-800 text-white">
         <tr>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Name</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Category</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Country</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">State</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Actions</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Nombre</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Categoría</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">País</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Estado</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Acciones</th>
         </tr>
       </thead>
       <tbody class="text-gray-700">
@@ -33,11 +33,11 @@
           <td class="py-3 px-4 text-center space-x-2">
             <a [routerLink]="['/companies', company.id]"
                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded text-xs transition-colors duration-150">
-              Details
+              Detalles
             </a>
             <button (click)="onValidateCompany(company.id)"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded text-xs transition-colors duration-150">
-              Validate
+              Validar
             </button>
           </td>
         </tr>

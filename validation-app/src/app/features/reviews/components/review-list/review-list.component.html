@@ -1,9 +1,9 @@
 <!-- src/app/features/reviews/components/review-list/review-list.component.html -->
 <div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Reviews</h1>
+  <h1 class="text-2xl font-bold mb-4">Reseñas</h1>
 
   <div *ngIf="isLoading$ | async" class="text-center py-8">
-    <p class="text-lg text-gray-600">Loading reviews...</p>
+    <p class="text-lg text-gray-600">Cargando reseñas...</p>
     <div class="mt-4">
       <div class="inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
@@ -11,17 +11,17 @@
 
   <div *ngIf="!(isLoading$ | async) && (reviews$ | async) as reviews">
     <div *ngIf="reviews.length === 0" class="text-center text-gray-500 py-8">
-      No reviews found.
+      No se encontraron reseñas.
     </div>
 
     <table *ngIf="reviews.length > 0" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
       <thead class="bg-gray-800 text-white">
         <tr>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Company ID</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Role</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Recommended</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Pending Approval</th>
-          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Actions</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">ID de Empresa</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-left">Puesto</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Recomendada</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Pendiente de Aprobación</th>
+          <th class="py-3 px-4 uppercase font-semibold text-sm text-center">Acciones</th>
         </tr>
       </thead>
       <tbody class="text-gray-700">
@@ -30,18 +30,18 @@
           <td class="py-3 px-4">{{ review.rol }}</td>
           <td class="py-3 px-4 text-center">
             <span [ngClass]="{'text-green-600 font-semibold': review.recommendation, 'text-red-600 font-semibold': !review.recommendation}">
-              {{ review.recommendation ? 'Yes' : 'No' }}
+              {{ review.recommendation ? 'Sí' : 'No' }}
             </span>
           </td>
           <td class="py-3 px-4 text-center">
             <span [ngClass]="{'text-green-600 font-semibold': !review.pendingApproval, 'text-red-600 font-semibold': review.pendingApproval}">
-              {{ review.pendingApproval ? 'Yes' : 'No' }}
+              {{ review.pendingApproval ? 'Sí' : 'No' }}
             </span>
           </td>
           <td class="py-3 px-4 text-center">
             <a [routerLink]="['/reviews', review.id]"
                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xs transition-colors duration-150">
-              View Details
+              Ver Detalles
             </a>
           </td>
         </tr>
